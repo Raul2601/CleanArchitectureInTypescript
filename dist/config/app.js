@@ -5,9 +5,9 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const environment_1 = require("../environment");
 // routes
-const test_routes_1 = require("../routes/test_routes");
-const common_routes_1 = require("../routes/common_routes");
-const user_routes_1 = require("../routes/user_routes");
+const test_routes_1 = require("./routes/test_routes");
+const common_routes_1 = require("./routes/common_routes");
+const user_routes_1 = require("./routes/user_routes");
 class App {
     constructor() {
         this.mongoUrl = 'mongodb://localhost/' + environment_1.default.getDBName();

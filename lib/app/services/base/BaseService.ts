@@ -3,7 +3,7 @@ import { IWrite } from "../interfaces/IWrite";
 import mongoose = require("mongoose");
 
 
-export abstract class BaseRepository<T extends mongoose.Document> implements IWrite<T>, IRead<T>{
+export class BaseRepository<T extends mongoose.Document> implements IWrite<T>, IRead<T>{
 
     private _model: mongoose.Model<mongoose.Document>;
 

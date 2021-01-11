@@ -1,39 +1,15 @@
-import { IUser } from "app/domain/entities/interfaces/IUser";
-import UserService from "app/services/UserService";
+import { IUser } from "../domain/entities/interfaces/IUser";
+import User from "../persistance/schemas/UserSchema";
+import { UserService } from "../services/UserService"
+import { BaseBusiness } from "./interfaces/base/BaseBusiness";
 import { IUserBusiness } from "./interfaces/IUserBusiness";
 
-export class UserBusiness implements IUserBusiness {
+export class UserBusiness extends BaseBusiness<IUser> implements IUserBusiness {
 
     private _userService: UserService;
 
     constructor() {
+        super(User);
         this._userService = new UserService();
-    }
-
-    create(item: IUser, callback: (error: any, result: any) => void) {
-        this._userService.create(item, callback);
-    }
-
-    retrieve(callback: (error: any, result: any) => void) {
-        this._userService.retrieve(callback);
-    }
-
-    update(_id: string, item: IUser, callback: (error: any, result: any) => void) {
-
-        this._userService.findById(_id, (err, res) => {
-            if (err) callback(err, res);
-
-            else
-                this._userService.update(res._id, item, callback);
-
-        });
-    }
-
-    delete(_id: string, callback: (error: any, result: any) => void) {
-        this._userService.delete(_id, callback);
-    }
-
-    findById(_id: string, callback: (error: any, result: IUser) => void) {
-        this._userService.findById(_id, callback);
     }
 }

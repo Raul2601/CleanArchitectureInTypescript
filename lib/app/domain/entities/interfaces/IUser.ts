@@ -1,7 +1,7 @@
 import { ModificationNote } from "../../../persistance/common/model";
-import mongoose = require("mongoose");
+import { BaseEntity } from "./base/BaseEntity";
 
-export interface IUser extends mongoose.Document {
+export interface IUser extends BaseEntity {
     name: {
         first_name: String;
         middle_name: String;
