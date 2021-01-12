@@ -1,14 +1,12 @@
-import Joi = require("joi");
-import { BaseValidator } from "./base/BaseValidator";
-import { Request, Response, NextFunction } from 'express';
-
-export class UserValidator extends BaseValidator {
-
-    private userSchema: Joi.ObjectSchema<any> = undefined;
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.UserValidator = void 0;
+const Joi = require("joi");
+const BaseValidator_1 = require("./base/BaseValidator");
+class UserValidator extends BaseValidator_1.BaseValidator {
     constructor() {
         super();
-
+        this.userSchema = undefined;
         this.userSchema = Joi.object().keys({
             user: Joi.object().keys({
                 name: Joi.object().keys({
@@ -18,11 +16,11 @@ export class UserValidator extends BaseValidator {
             }).unknown(true)
         });
     }
-
-    public Validate(req: Request, res: Response, next: NextFunction) {
+    Validate(req, res, next) {
         const result = this.userSchema.validate({
             user: req.body.user
-        })
+        });
         this.nextOrReturn(result, res, next);
     }
 }
+exports.UserValidator = UserValidator;

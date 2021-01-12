@@ -16,24 +16,24 @@ export class BaseController<T extends BaseEntity> implements IReadController, IW
 
     public create(req: Request, res: Response) {
         // this check whether all the fields were send through the request or not
-        if (req.body.name && req.body.name.first_name && req.body.name.middle_name && req.body.name.last_name &&
-            req.body.email &&
-            req.body.phone_number &&
-            req.body.gender) {
+        // if (req.body.name && req.body.name.first_name && req.body.name.middle_name && req.body.name.last_name &&
+        //     req.body.email &&
+        //     req.body.phone_number &&
+        //     req.body.gender) {
 
-            let user_params: T = <T>req.body;
+        let user_params: T = <T>req.body;
 
-            this.entityBusiness.create(user_params, (err, user) => {
-                if (err) {
-                    mongoError(err, res);
-                } else {
-                    successResponse('create user successfully', user, res);
-                }
-            })
-        } else {
-            // error response if some fields are missing in request body
-            insufficientParameters(res);
-        }
+        this.entityBusiness.create(user_params, (err, user) => {
+            if (err) {
+                mongoError(err, res);
+            } else {
+                successResponse('create user successfully', user, res);
+            }
+        })
+        // } else {
+        //     // error response if some fields are missing in request body
+        //     insufficientParameters(res);
+        // }
     }
 
     public update(req: Request, res: Response) {

@@ -11,10 +11,8 @@ export class BaseRepository<T extends mongoose.Document> implements IWrite<T>, I
         this._model = schemaModel;
     }
 
-    create(item: T, callback: (error: any, result: mongoose.Document[]) => void) {
-        var model = new this._model(item)
-        model.save();
-        //this._model.create(item, callback);
+    async create(item: T, callback: (error: any, result: mongoose.Document) => void) {
+        this._model.create(item, callback);
     }
 
     retrieve(callback: (error: any, result: mongoose.Document[]) => void) {

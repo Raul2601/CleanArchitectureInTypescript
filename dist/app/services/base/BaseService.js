@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BaseRepository = void 0;
 const mongoose = require("mongoose");
@@ -7,9 +16,9 @@ class BaseRepository {
         this._model = schemaModel;
     }
     create(item, callback) {
-        var model = new this._model(item);
-        model.save();
-        //this._model.create(item, callback);
+        return __awaiter(this, void 0, void 0, function* () {
+            this._model.create(item, callback);
+        });
     }
     retrieve(callback) {
         this._model.find({}, callback);

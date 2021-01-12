@@ -9,24 +9,23 @@ class BaseController {
     }
     create(req, res) {
         // this check whether all the fields were send through the request or not
-        if (req.body.name && req.body.name.first_name && req.body.name.middle_name && req.body.name.last_name &&
-            req.body.email &&
-            req.body.phone_number &&
-            req.body.gender) {
-            let user_params = req.body;
-            this.entityBusiness.create(user_params, (err, user) => {
-                if (err) {
-                    service_1.mongoError(err, res);
-                }
-                else {
-                    service_1.successResponse('create user successfully', user, res);
-                }
-            });
-        }
-        else {
-            // error response if some fields are missing in request body
-            service_1.insufficientParameters(res);
-        }
+        // if (req.body.name && req.body.name.first_name && req.body.name.middle_name && req.body.name.last_name &&
+        //     req.body.email &&
+        //     req.body.phone_number &&
+        //     req.body.gender) {
+        let user_params = req.body;
+        this.entityBusiness.create(user_params, (err, user) => {
+            if (err) {
+                service_1.mongoError(err, res);
+            }
+            else {
+                service_1.successResponse('create user successfully', user, res);
+            }
+        });
+        // } else {
+        //     // error response if some fields are missing in request body
+        //     insufficientParameters(res);
+        // }
     }
     update(req, res) {
         if (req.params.id &&
