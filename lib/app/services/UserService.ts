@@ -1,9 +1,9 @@
 import User from "../persistance/schemas/UserSchema";
 import { IUser } from '../domain/entities/interfaces/IUser';
-import { BaseRepository } from './base/BaseService';
+import { BaseService } from './base/BaseService';
 import { IUserService } from "./IUserService";
 
-export class UserService extends BaseRepository<IUser> implements IUserService {
+export class UserService extends BaseService<IUser> implements IUserService {
     constructor() {
         super(User);
     }

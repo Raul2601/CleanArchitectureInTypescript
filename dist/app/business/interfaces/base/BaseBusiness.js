@@ -4,7 +4,7 @@ exports.BaseBusiness = void 0;
 const BaseService_1 = require("../../../services/base/BaseService");
 class BaseBusiness {
     constructor(schemaModel) {
-        this.repository = new BaseService_1.BaseRepository(schemaModel);
+        this.repository = new BaseService_1.BaseService(schemaModel);
     }
     create(item, callback) {
         this.repository.create(item, callback);

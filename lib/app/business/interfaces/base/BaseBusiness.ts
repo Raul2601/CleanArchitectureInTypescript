@@ -1,14 +1,14 @@
 import { IRead } from "../common/IRead";
 import { IWrite } from "../common/IWrite";
 import mongoose = require("mongoose");
-import { BaseRepository } from "../../../services/base/BaseService";
+import { BaseService } from "../../../services/base/BaseService";
 
 export class BaseBusiness<T extends mongoose.Document> implements IRead<T>, IWrite<T> {
 
-    private repository: BaseRepository<mongoose.Document>;
+    private repository: BaseService<mongoose.Document>;
 
     constructor(schemaModel: mongoose.Model<mongoose.Document>) {
-        this.repository = new BaseRepository(schemaModel);
+        this.repository = new BaseService(schemaModel);
     }
 
     create(item: T, callback: (error: any, result: any) => void) {

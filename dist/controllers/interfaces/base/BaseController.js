@@ -52,11 +52,8 @@ class BaseController {
                 if (err) {
                     service_1.mongoError(err, res);
                 }
-                else if (result.deletedCount !== 0) {
-                    service_1.successResponse('delete user successfully', null, res);
-                }
                 else {
-                    service_1.failureResponse('invalid user', null, res);
+                    service_1.successResponse('delete user successfully', null, res);
                 }
             });
         }

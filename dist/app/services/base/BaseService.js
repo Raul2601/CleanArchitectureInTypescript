@@ -9,9 +9,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BaseRepository = void 0;
+exports.BaseService = void 0;
 const mongoose = require("mongoose");
-class BaseRepository {
+class BaseService {
     constructor(schemaModel) {
         this._model = schemaModel;
     }
@@ -36,4 +36,4 @@ class BaseRepository {
         return mongoose.Types.ObjectId.createFromHexString(_id);
     }
 }
-exports.BaseRepository = BaseRepository;
+exports.BaseService = BaseService;
