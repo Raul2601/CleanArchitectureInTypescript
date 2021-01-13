@@ -1,6 +1,6 @@
 var ObjectId = require('mongoose').Types.ObjectId;
 import { Response, NextFunction } from 'express';
-import * as Joi from 'joi';
+import Joi = require("joi");
 import JoiObjectId from "joi-objectid";
 
 export class BaseValidator {

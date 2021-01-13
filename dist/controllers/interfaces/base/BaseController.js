@@ -28,24 +28,23 @@ class BaseController {
         // }
     }
     update(req, res) {
-        if (req.params.id &&
-            req.body.name || req.body.name.first_name || req.body.name.middle_name || req.body.name.last_name ||
-            req.body.email ||
-            req.body.phone_number ||
-            req.body.gender) {
-            const user_params = req.body;
-            this.entityBusiness.update(req.params.id, user_params, (err, user) => {
-                if (err) {
-                    service_1.mongoError(err, res);
-                }
-                else {
-                    service_1.successResponse('update user successfully', null, res);
-                }
-            });
-        }
-        else {
-            service_1.insufficientParameters(res);
-        }
+        // if (req.params.id &&
+        //     req.body.name || req.body.name.first_name || req.body.name.middle_name || req.body.name.last_name ||
+        //     req.body.email ||
+        //     req.body.phone_number ||
+        //     req.body.gender) {
+        const user_params = req.body;
+        this.entityBusiness.update(req.params.id, user_params, (err, result) => {
+            if (err) {
+                service_1.mongoError(err, res);
+            }
+            else {
+                service_1.successResponse('update user successfully', null, res);
+            }
+        });
+        // } else {
+        //     insufficientParameters(res);
+        // }
     }
     delete(req, res) {
         if (req.params.id) {
@@ -81,7 +80,7 @@ class BaseController {
     }
     findById(req, res) {
         try {
-            var _id = req.params._id;
+            var _id = req.params.id;
             this.entityBusiness.findById(_id, (error, result) => {
                 if (error)
                     res.send({ "error": "error" });

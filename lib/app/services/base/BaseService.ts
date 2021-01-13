@@ -20,11 +20,11 @@ export class BaseRepository<T extends mongoose.Document> implements IWrite<T>, I
     }
 
     update(_id: mongoose.Types.ObjectId, item: T, callback: (error: any, result: any) => void) {
-        this._model.update({ _id: _id }, item, {}, callback);
+        this._model.updateOne({ _id: _id }, item, {}, callback);
     }
 
     delete(_id: string, callback: (error: any, result: any) => void) {
-        this._model.remove({ _id: this.toObjectId(_id) }, (err) => callback(err, null));
+        this._model.deleteOne({ _id: this.toObjectId(_id) }, {}, (err) => callback(err, null));
     }
 
     findById(_id: string, callback: (error: any, result: T) => void) {

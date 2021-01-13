@@ -24,10 +24,10 @@ class BaseRepository {
         this._model.find({}, callback);
     }
     update(_id, item, callback) {
-        this._model.update({ _id: _id }, item, {}, callback);
+        this._model.updateOne({ _id: _id }, item, {}, callback);
     }
     delete(_id, callback) {
-        this._model.remove({ _id: this.toObjectId(_id) }, (err) => callback(err, null));
+        this._model.deleteOne({ _id: this.toObjectId(_id) }, {}, (err) => callback(err, null));
     }
     findById(_id, callback) {
         this._model.findById(_id, callback);

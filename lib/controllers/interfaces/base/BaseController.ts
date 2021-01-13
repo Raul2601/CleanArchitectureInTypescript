@@ -37,24 +37,24 @@ export class BaseController<T extends BaseEntity> implements IReadController, IW
     }
 
     public update(req: Request, res: Response) {
-        if (req.params.id &&
-            req.body.name || req.body.name.first_name || req.body.name.middle_name || req.body.name.last_name ||
-            req.body.email ||
-            req.body.phone_number ||
-            req.body.gender) {
+        // if (req.params.id &&
+        //     req.body.name || req.body.name.first_name || req.body.name.middle_name || req.body.name.last_name ||
+        //     req.body.email ||
+        //     req.body.phone_number ||
+        //     req.body.gender) {
 
-            const user_params: T = <T>req.body;
+        const user_params: T = <T>req.body;
 
-            this.entityBusiness.update(req.params.id, user_params, (err, user) => {
-                if (err) {
-                    mongoError(err, res);
-                } else {
-                    successResponse('update user successfully', null, res);
-                }
-            })
-        } else {
-            insufficientParameters(res);
-        }
+        this.entityBusiness.update(req.params.id, user_params, (err, result) => {
+            if (err) {
+                mongoError(err, res);
+            } else {
+                successResponse('update user successfully', null, res);
+            }
+        })
+        // } else {
+        //     insufficientParameters(res);
+        // }
     }
 
     public delete(req: Request, res: Response) {
@@ -63,10 +63,8 @@ export class BaseController<T extends BaseEntity> implements IReadController, IW
             this.entityBusiness.delete(req.params.id, (err, result) => {
                 if (err) {
                     mongoError(err, res);
-                } else if (result.deletedCount !== 0) {
-                    successResponse('delete user successfully', null, res);
                 } else {
-                    failureResponse('invalid user', null, res);
+                    successResponse('delete user successfully', null, res);
                 }
             })
         } else {
@@ -91,7 +89,7 @@ export class BaseController<T extends BaseEntity> implements IReadController, IW
     public findById(req: Request, res: Response): void {
         try {
 
-            var _id: string = req.params._id;
+            var _id: string = req.params.id;
             this.entityBusiness.findById(_id, (error, result) => {
                 if (error) res.send({ "error": "error" });
                 else res.send(result);

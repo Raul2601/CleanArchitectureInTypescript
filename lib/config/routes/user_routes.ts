@@ -13,7 +13,10 @@ export class UserRoutes {
             this.user_controller.retrieve(req, res);
         });
 
-        app.post('/api/user',// this.userValidator.Validate, 
+        app.post('/api/user',
+            (req: Request, res: Response, next: NextFunction) => {
+                this.userValidator.Validate(req, res, next);
+            },
             (req: Request, res: Response) => {
                 this.user_controller.create(req, res);
             });

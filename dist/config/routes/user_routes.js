@@ -12,8 +12,9 @@ class UserRoutes {
         app.get('/api/users', (req, res) => {
             this.user_controller.retrieve(req, res);
         });
-        app.post('/api/user', // this.userValidator.Validate, 
-        (req, res) => {
+        app.post('/api/user', (req, res, next) => {
+            this.userValidator.Validate(req, res, next);
+        }, (req, res) => {
             this.user_controller.create(req, res);
         });
         app.get('/api/user/:id', (req, res) => {
