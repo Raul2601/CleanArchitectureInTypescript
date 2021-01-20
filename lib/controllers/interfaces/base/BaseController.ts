@@ -15,11 +15,6 @@ export class BaseController<T extends BaseEntity> implements IReadController, IW
     }
 
     public create(req: Request, res: Response) {
-        // this check whether all the fields were send through the request or not
-        // if (req.body.name && req.body.name.first_name && req.body.name.middle_name && req.body.name.last_name &&
-        //     req.body.email &&
-        //     req.body.phone_number &&
-        //     req.body.gender) {
 
         let user_params: T = <T>req.body;
 
@@ -30,18 +25,10 @@ export class BaseController<T extends BaseEntity> implements IReadController, IW
                 successResponse('create user successfully', user, res);
             }
         })
-        // } else {
-        //     // error response if some fields are missing in request body
-        //     insufficientParameters(res);
-        // }
+
     }
 
     public update(req: Request, res: Response) {
-        // if (req.params.id &&
-        //     req.body.name || req.body.name.first_name || req.body.name.middle_name || req.body.name.last_name ||
-        //     req.body.email ||
-        //     req.body.phone_number ||
-        //     req.body.gender) {
 
         const user_params: T = <T>req.body;
 
@@ -52,24 +39,18 @@ export class BaseController<T extends BaseEntity> implements IReadController, IW
                 successResponse('update user successfully', null, res);
             }
         })
-        // } else {
-        //     insufficientParameters(res);
-        // }
     }
 
     public delete(req: Request, res: Response) {
-        if (req.params.id) {
 
-            this.entityBusiness.delete(req.params.id, (err, result) => {
-                if (err) {
-                    mongoError(err, res);
-                } else {
-                    successResponse('delete user successfully', null, res);
-                }
-            })
-        } else {
-            insufficientParameters(res);
-        }
+        this.entityBusiness.delete(req.params.id, (err, result) => {
+            if (err) {
+                mongoError(err, res);
+            } else {
+                successResponse('delete user successfully', null, res);
+            }
+        })
+
     }
 
     public retrieve(req: Request, res: Response): void {

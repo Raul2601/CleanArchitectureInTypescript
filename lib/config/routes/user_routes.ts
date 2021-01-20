@@ -21,16 +21,31 @@ export class UserRoutes {
                 this.user_controller.create(req, res);
             });
 
-        app.get('/api/user/:id', (req: Request, res: Response) => {
-            this.user_controller.findById(req, res);
-        });
+        app.get('/api/user/:id',
+            (req: Request, res: Response, next: NextFunction) => {
+                this.userValidator.validateId(req, res, next);
+            },
+            (req: Request, res: Response) => {
+                this.user_controller.findById(req, res);
+            });
 
-        app.put('/api/user/:id', (req: Request, res: Response) => {
-            this.user_controller.update(req, res);
-        });
+        app.put('/api/user/:id',
+            (req: Request, res: Response, next: NextFunction) => {
+                this.userValidator.validateId(req, res, next);
+            },
+            (req: Request, res: Response, next: NextFunction) => {
+                this.userValidator.Validate(req, res, next);
+            },
+            (req: Request, res: Response) => {
+                this.user_controller.update(req, res);
+            });
 
-        app.delete('/api/user/:id', (req: Request, res: Response) => {
-            this.user_controller.delete(req, res);
-        });
+        app.delete('/api/user/:id',
+            (req: Request, res: Response, next: NextFunction) => {
+                this.userValidator.validateId(req, res, next);
+            },
+            (req: Request, res: Response) => {
+                this.user_controller.delete(req, res);
+            });
     }
 }

@@ -5,7 +5,7 @@ import JoiObjectId from "joi-objectid";
 
 export class BaseValidator {
 
-    protected validateId(req, res, next) {
+    public validateId(req, res, next) {
         var schema = Joi.object().keys({
             id: JoiObjectId.required().label('Id must be a valid mongo id !')
         })
